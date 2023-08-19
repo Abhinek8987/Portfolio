@@ -1,0 +1,189 @@
+
+body{
+    /*background-image: url('background2.jpg');
+    /* height: 100vh; */
+    /* background-repeat: no-repeat; */
+    /*backface-visibility: hidden;*/ 
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+
+}
+h2{
+    
+    color: deeppink;
+}
+.box2{
+    color: blue;
+    width: 400px;
+    background-color: aqua;
+}
+.box1 p{
+    background-color: cornflowerblue;
+    font-family:cursive;
+}
+.skills{
+    background-color: mediumspringgreen;
+
+    box-sizing: border-box;
+    width:300px;
+    border-radius: 25px;
+    /* border: 5px solid aquamarine; */
+  
+}
+.skills img{
+    cursor: pointer;
+}
+.skills img:hover{
+    width:80px;
+}
+/* .project1{
+    border:10px solid white;
+} */
+
+.img2{
+    float:left;
+    width:30%;
+}
+*{
+    box-sizing: border-box;
+}
+/* .clm{
+    float:left;
+    cursor: pointer;
+    width: 50%;
+    padding: 3px;
+
+} */
+.about{
+    float:left;
+}
+.project_bo{
+    margin: 5px;
+    box-sizing: border-box;
+    width:1100px;
+    border: 2px solid black;
+}
+.project1 img{
+    cursor: pointer;
+}
+.project3 img{
+    cursor: pointer;
+}
+.project4 img{
+    cursor: pointer;
+}
+.project5 img{
+    cursor: pointer;
+}
+/*.btn{
+    
+    border-radius: 5px;
+    color:white;*/
+    /* background-color:#007bb5;
+    /*width:103px;
+    /* border: 5px solid lightseagreen; 
+    margin: 5px;
+}
+.btn1:hover{
+    /* background-color:#007bb5; 
+    background-color: transparent;
+     background-color: unset; 
+    opacity: 0.8;
+}*/
+/*.btn1{
+    /* background-color:chartreuse; */
+    /* color: blue;
+    font-size:large;
+    cursor: pointer;
+}*/
+.certifications{
+    font-size: 23px;
+
+}
+.certifications p{
+    font-size: 25px;
+    background-color: tomato;
+    width: fit-content;
+}
+.resume h1 a {
+    background-color:burlywood;
+    color: blue;
+    
+}
+.contact{
+    /* background-color: lightgoldenrodyellow; */
+    /* background-color: mediumturquoise; */
+    background-color: lightsalmon;
+    /* background-color: lightblue; */
+    margin: 50px;
+    box-sizing: border-box;
+    width:500px;
+    border: 10px solid palevioletred;
+}
+.contact p{
+    font-size: 20px;
+}
+input[type=text]{
+    font-size: 20px;
+}
+input[type=number]{
+   
+    font-size: 20px;
+}
+textarea[name=Email]{
+    font-size: 20px;
+}
+textarea[name=Message]{
+    font-size: 20px;
+}
+.btn3{
+    border-width: 10px;
+    font-size: larger;
+    cursor: pointer;
+    width: 250px;
+    margin: 10px;
+    border-radius: 10px;
+    border-color:aqua;
+    color: blueviolet;
+
+}
+.main{
+    background-color: aquamarine;
+    width: 200px;
+    font-size: 30px;
+    justify-content: center;
+    text-align: center;
+}
+.media{
+    font-size: 20px;
+    background-color: cyan;
+    width: fit-content;
+}
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 2px;
+  }
+  
+  .fa:hover {
+      opacity: 0.7;
+  }
+.fa-linkedin {
+    background: #007bb5;
+    color: white;
+  }
+  .fa-github {
+    background: black;
+    color: white;
+  }
+
+
+
+
+
+
+
+
+
