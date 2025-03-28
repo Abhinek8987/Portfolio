@@ -24,7 +24,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and certi
 
 ## 🚀 Live Demo
 
-Check out the live version: [https://abhinek8987.github.io/portfolio](https://abhinek8987.github.io/portfolio)
+Check out the live version: [https://abhinek8987.github.io/Portfolio/)
 
 ## 🎨 Color Scheme
 
