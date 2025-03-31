@@ -493,22 +493,18 @@
   </form>
   
   <!-- Success Modal -->
-<div class="modal-overlay" id="success-modal" style="display:none;">
+<div class="modal-overlay" id="success-modal">
   <div class="thank-you-message">
-    <div class="confetti-animation"></div>
     <i class="fas fa-paper-plane success-icon"></i>
     <h3 class="success-heading">Message Received! ✨</h3>
     <p class="success-text">
-      <span class="highlight" id="thank-you-text">Thank you!</span> This is Abhinek. 
-      I've got your message and will <span class="underline-animation">respond within 24 hours</span>.
+      <span class="thank-you-line" id="thank-you-personal">Thank you!</span>
+      <span class="response-line">This is Abhinek. I'll respond within <span class="highlight-time">24 hours</span>.</span>
     </p>
-    <div class="progress-bar">
-      <div class="progress-fill"></div>
-    </div>
     <button class="btn btn-primary" onclick="closeModal()">Close</button>
   </div>
 </div>
-    </section>
+</section>
 
     <!-- Footer -->
     <footer class="footer">
