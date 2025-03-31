@@ -116,14 +116,6 @@ if (contactForm) {
             document.getElementById('success-modal').style.display = 'flex';
             contactForm.reset();
             
-            // Google Analytics tracking
-            if (window.gtag) {
-                gtag('event', 'form_submit', {
-                    'event_category': 'Contact',
-                    'event_label': 'Portfolio Form'
-                });
-            }
-            
             // Email deliverability debug log
             console.log('Form submitted successfully. Mail server response:', response);
             
