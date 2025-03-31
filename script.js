@@ -88,51 +88,61 @@ backToTopBtn.addEventListener('click', () => {
     });
 });
 
-// Form submission
-// Professional Form Handling
+// Professional Form Handling with Email Deliverability
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const submitText = submitBtn.querySelector('.submit-text');
-    const loader = submitBtn.querySelector('.loading-icon');
-    
-    // Show loading state
-    submitText.textContent = 'Sending...';
-    loader.style.display = 'inline-block';
-    submitBtn.disabled = true;
-    
-    try {
-      // Submit to Netlify
-      const formData = new FormData(contactForm);
-      await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-      });
-      
-      // Show success modal
-      document.getElementById('success-modal').style.display = 'flex';
-      contactForm.reset();
-      
-    } catch (error) {
-      alert('Error sending message. Please try again later.');
-    } finally {
-      // Reset button
-      submitText.textContent = 'Send Message';
-      loader.style.display = 'none';
-      submitBtn.disabled = false;
-    }
-  });
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const submitText = submitBtn.querySelector('.submit-text');
+        const loader = submitBtn.querySelector('.loading-icon');
+        
+        // Show loading state
+        submitText.textContent = 'Sending...';
+        loader.style.display = 'inline-block';
+        submitBtn.disabled = true;
+        
+        try {
+            // Submit to Netlify
+            const formData = new FormData(contactForm);
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(formData).toString()
+            });
+            
+            // Show success modal
+            document.getElementById('success-modal').style.display = 'flex';
+            contactForm.reset();
+            
+            // Google Analytics tracking
+            if (window.gtag) {
+                gtag('event', 'form_submit', {
+                    'event_category': 'Contact',
+                    'event_label': 'Portfolio Form'
+                });
+            }
+            
+            // Email deliverability debug log
+            console.log('Form submitted successfully. Mail server response:', response);
+            
+        } catch (error) {
+            alert('Error sending message. Please try again later.');
+            console.error('Form submission error:', error);
+        } finally {
+            // Reset button
+            submitText.textContent = 'Send Message';
+            loader.style.display = 'none';
+            submitBtn.disabled = false;
+        }
+    });
 }
 
 // Modal close function
 function closeModal() {
-  document.getElementById('success-modal').style.display = 'none';
+    document.getElementById('success-modal').style.display = 'none';
 }
-
 
 // Loading Animation
 window.addEventListener('load', function() {
@@ -142,10 +152,10 @@ window.addEventListener('load', function() {
         setTimeout(function() {
             loaderWrapper.style.display = 'none';
         }, 500);
-    }, 1500); // Adjust this time to match your loading animation duration
+    }, 1500);
 });
 
-
+// Show More Projects Functionality
 document.addEventListener('DOMContentLoaded', function() {
     const showMoreContainer = document.querySelector('.show-more-container');
     const showMoreBtn = document.getElementById('show-more-btn');
@@ -182,7 +192,11 @@ document.addEventListener('DOMContentLoaded', function() {
             showMoreBtn.innerHTML = '<span>Show More</span><i class="fas fa-chevron-down"></i>';
         }
         
-        // Add/remove active class for any additional styling
         showMoreBtn.classList.toggle('active');
     });
+
+    // Email configuration check
+    console.log('Form Configuration Check:');
+    console.log('- Form element:', document.querySelector('form[name="contact"]') ? 'Exists' : 'Missing');
+    console.log('- Netlify attribute:', document.querySelector('form[data-netlify="true"]') ? 'Exists' : 'Missing');
 });
