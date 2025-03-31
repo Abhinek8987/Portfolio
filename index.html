@@ -492,15 +492,22 @@
     </button>
   </form>
   
-  <!-- Success Modal (hidden by default) -->
-  <div class="modal-overlay" id="success-modal" style="display:none;">
-    <div class="modal-content">
-      <i class="fas fa-check-circle success-icon"></i>
-      <h3>Message Sent!</h3>
-      <p>Thank you for contacting me. I'll respond within 24 hours.</p>
-      <button class="btn btn-primary" onclick="closeModal()">Close</button>
+  <!-- Success Modal -->
+<div class="modal-overlay" id="success-modal" style="display:none;">
+  <div class="thank-you-message">
+    <div class="confetti-animation"></div>
+    <i class="fas fa-paper-plane success-icon"></i>
+    <h3 class="success-heading">Message Received! ✨</h3>
+    <p class="success-text">
+      <span class="highlight" id="thank-you-text">Thank you!</span> This is Abhinek. 
+      I've got your message and will <span class="underline-animation">respond within 24 hours</span>.
+    </p>
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
     </div>
+    <button class="btn btn-primary" onclick="closeModal()">Close</button>
   </div>
+</div>
     </section>
 
     <!-- Footer -->
