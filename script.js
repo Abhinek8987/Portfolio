@@ -88,7 +88,7 @@ backToTopBtn.addEventListener('click', () => {
     });
 });
 
-// Professional Form Handling with Email Deliverability
+// Professional Form Handling with Modal
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
@@ -97,6 +97,8 @@ if (contactForm) {
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const submitText = submitBtn.querySelector('.submit-text');
         const loader = submitBtn.querySelector('.loading-icon');
+        const formData = new FormData(contactForm);
+        const formValues = Object.fromEntries(formData.entries());
         
         // Show loading state
         submitText.textContent = 'Sending...';
@@ -105,19 +107,31 @@ if (contactForm) {
         
         try {
             // Submit to Netlify
-            const formData = new FormData(contactForm);
-            const response = await fetch('/', {
+            await fetch('/', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: new URLSearchParams(formData).toString()
             });
             
-            // Show success modal
+            // Personalize success message
+            const thankYouText = document.getElementById('thank-you-text');
+            if (formValues.name) {
+                thankYouText.innerHTML = `Thank you, <span class="name-highlight">${formValues.name}</span>!`;
+            } else {
+                thankYouText.textContent = 'Thank you!';
+            }
+            
+            // Show modal
             document.getElementById('success-modal').style.display = 'flex';
             contactForm.reset();
             
-            // Email deliverability debug log
-            console.log('Form submitted successfully. Mail server response:', response);
+            // Google Analytics tracking
+            if (window.gtag) {
+                gtag('event', 'form_submit', {
+                    'event_category': 'Contact',
+                    'event_label': 'Portfolio Form'
+                });
+            }
             
         } catch (error) {
             alert('Error sending message. Please try again later.');
@@ -131,19 +145,31 @@ if (contactForm) {
     });
 }
 
-// Modal close function
+// Modal functions
 function closeModal() {
     document.getElementById('success-modal').style.display = 'none';
+}
+
+// Close modal when clicking outside
+const modalOverlay = document.querySelector('.modal-overlay');
+if (modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            closeModal();
+        }
+    });
 }
 
 // Loading Animation
 window.addEventListener('load', function() {
     setTimeout(function() {
         const loaderWrapper = document.querySelector('.loader-wrapper');
-        loaderWrapper.style.opacity = '0';
-        setTimeout(function() {
-            loaderWrapper.style.display = 'none';
-        }, 500);
+        if (loaderWrapper) {
+            loaderWrapper.style.opacity = '0';
+            setTimeout(function() {
+                loaderWrapper.style.display = 'none';
+            }, 500);
+        }
     }, 1500);
 });
 
@@ -155,37 +181,39 @@ document.addEventListener('DOMContentLoaded', function() {
     let isExpanded = false;
 
     // Only show the button if there are hidden projects
-    if (hiddenProjects.length > 0) {
+    if (hiddenProjects.length > 0 && showMoreContainer) {
         showMoreContainer.style.display = 'flex';
     }
 
-    showMoreBtn.addEventListener('click', function() {
-        isExpanded = !isExpanded;
-        
-        if (isExpanded) {
-            // Show all projects
-            hiddenProjects.forEach(project => {
-                project.style.display = 'block';
-                setTimeout(() => {
-                    project.style.opacity = '1';
-                    project.style.transform = 'translateY(0)';
-                }, 10);
-            });
-            showMoreBtn.innerHTML = '<span>Show Less</span><i class="fas fa-chevron-up"></i>';
-        } else {
-            // Hide additional projects
-            hiddenProjects.forEach(project => {
-                project.style.opacity = '0';
-                project.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    project.style.display = 'none';
-                }, 300);
-            });
-            showMoreBtn.innerHTML = '<span>Show More</span><i class="fas fa-chevron-down"></i>';
-        }
-        
-        showMoreBtn.classList.toggle('active');
-    });
+    if (showMoreBtn) {
+        showMoreBtn.addEventListener('click', function() {
+            isExpanded = !isExpanded;
+            
+            if (isExpanded) {
+                // Show all projects
+                hiddenProjects.forEach(project => {
+                    project.style.display = 'block';
+                    setTimeout(() => {
+                        project.style.opacity = '1';
+                        project.style.transform = 'translateY(0)';
+                    }, 10);
+                });
+                showMoreBtn.innerHTML = '<span>Show Less</span><i class="fas fa-chevron-up"></i>';
+            } else {
+                // Hide additional projects
+                hiddenProjects.forEach(project => {
+                    project.style.opacity = '0';
+                    project.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        project.style.display = 'none';
+                    }, 300);
+                });
+                showMoreBtn.innerHTML = '<span>Show More</span><i class="fas fa-chevron-down"></i>';
+            }
+            
+            showMoreBtn.classList.toggle('active');
+        });
+    }
 
     // Email configuration check
     console.log('Form Configuration Check:');
