@@ -89,35 +89,48 @@ backToTopBtn.addEventListener('click', () => {
 });
 
 // Form submission
+// Professional Form Handling
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Optional: Show a loading spinner
     const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    const submitText = submitBtn.querySelector('.submit-text');
+    const loader = submitBtn.querySelector('.loading-icon');
+    
+    // Show loading state
+    submitText.textContent = 'Sending...';
+    loader.style.display = 'inline-block';
     submitBtn.disabled = true;
-
-    // Use Netlify's built-in form handling
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(new FormData(contactForm)).toString(),
-    })
-      .then(() => {
-        alert('Thank you! Your message has been sent. I will get back to you soon.');
-        contactForm.reset();
-      })
-      .catch(() => {
-        alert('Oops! Something went wrong. Please try again later.');
-      })
-      .finally(() => {
-        submitBtn.innerHTML = originalBtnText;
-        submitBtn.disabled = false;
+    
+    try {
+      // Submit to Netlify
+      const formData = new FormData(contactForm);
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
       });
+      
+      // Show success modal
+      document.getElementById('success-modal').style.display = 'flex';
+      contactForm.reset();
+      
+    } catch (error) {
+      alert('Error sending message. Please try again later.');
+    } finally {
+      // Reset button
+      submitText.textContent = 'Send Message';
+      loader.style.display = 'none';
+      submitBtn.disabled = false;
+    }
   });
+}
+
+// Modal close function
+function closeModal() {
+  document.getElementById('success-modal').style.display = 'none';
 }
 
 
