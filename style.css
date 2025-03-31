@@ -533,12 +533,14 @@ section {
 /* Projects Section */
 .projects {
     background-color: var(--bg);
+    padding: 5rem 0;
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .project-card {
@@ -546,32 +548,38 @@ section {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: var(--shadow);
-    transition: var(--transition);
+    transition: all 0.3s ease;
     border: var(--border);
 }
 
+.hidden-project {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
 .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 .project-img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease;
 }
 
 .project-card:hover .project-img {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .project-content {
-    padding: 1.5rem;
+    padding: 1.25rem;
 }
 
 .project-title {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: var(--primary);
 }
@@ -580,11 +588,11 @@ section {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .tech-tag {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     padding: 0.2rem 0.5rem;
     border-radius: 4px;
     background-color: rgba(67, 97, 238, 0.1);
@@ -593,17 +601,95 @@ section {
 
 .project-links {
     display: flex;
-    gap: 1rem;
-    margin-top: 1.5rem;
+    gap: 0.75rem;
+    margin-top: 1rem;
 }
 
 .project-link {
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 5px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     display: flex;
     align-items: center;
+    gap: 0.4rem;
+    transition: all 0.2s ease;
+}
+
+/* Update the existing show-more-btn styles */
+.show-more-btn {
+    display: inline-flex;
+    align-items: center;
     gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background: var(--gradient);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    animation: pulse 2s infinite;
+}
+
+.show-more-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    animation: none;
+}
+
+.show-more-btn i {
+    transition: transform 0.3s ease;
+}
+
+.show-more-btn.active i {
+    transform: rotate(180deg);
+}
+
+/* Remove the old styles that might conflict */
+.show-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* Add these to ensure the button matches your project's button styles */
+.show-more-btn span {
+    display: inline-block;
+}
+
+.show-more-btn:focus {
+    outline: none;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .projects {
+        padding: 3rem 0;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+    
+    .project-img {
+        height: 160px;
+    }
+    
+    .project-content {
+        padding: 1rem;
+    }
+    
+    .project-title {
+        font-size: 1.1rem;
+    }
+    
+    .show-more-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
 }
 
 /* Certifications Section */
