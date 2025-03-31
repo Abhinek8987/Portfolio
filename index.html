@@ -469,33 +469,38 @@
                     </div>
                 </div>
               <!-- Contact Form -->
-              <form 
-              name="contact" 
-              method="POST" 
-              data-netlify="true" 
-              action="/success.html"
-            >
-<!-- Hidden Netlify field -->
-<input type="hidden" name="form-name" value="contact" />
-<p class="hidden">
-  <label>Don’t fill this out if you're human: <input name="bot-field" /></label>
-</p>
-
-<!-- Form Fields -->
-<div class="form-group">
-  <input type="text" class="form-control" name="name" placeholder="Your Name" required>
-</div>
-<div class="form-group">
-  <input type="email" class="form-control" name="email" placeholder="Your Email" required>
-</div>
-<div class="form-group">
-  <input type="text" class="form-control" name="subject" placeholder="Subject" required>
-</div>
-<div class="form-group">
-  <textarea class="form-control" name="message" placeholder="Your Message" required></textarea>
-</div>
-<button type="submit" class="btn btn-primary">Send Message</button>
-</form>
+<form name="contact" method="POST" data-netlify="true" class="contact-form">
+    <input type="hidden" name="form-name" value="contact">
+    
+    <div class="form-group">
+      <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+    </div>
+    
+    <div class="form-group">
+      <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+    </div>
+    
+    <div class="form-group">
+      <textarea name="message" class="form-control" placeholder="Your Message" required></textarea>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">
+      <span class="submit-text">Send Message</span>
+      <span class="loading-icon" style="display:none;">
+        <i class="fas fa-spinner fa-spin"></i>
+      </span>
+    </button>
+  </form>
+  
+  <!-- Success Modal (hidden by default) -->
+  <div class="modal-overlay" id="success-modal" style="display:none;">
+    <div class="modal-content">
+      <i class="fas fa-check-circle success-icon"></i>
+      <h3>Message Sent!</h3>
+      <p>Thank you for contacting me. I'll respond within 24 hours.</p>
+      <button class="btn btn-primary" onclick="closeModal()">Close</button>
+    </div>
+  </div>
     </section>
 
     <!-- Footer -->
