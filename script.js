@@ -91,11 +91,33 @@ backToTopBtn.addEventListener('click', () => {
 // Form submission
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Thank you for your message! I will get back to you soon.');
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Optional: Show a loading spinner
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    submitBtn.disabled = true;
+
+    // Use Netlify's built-in form handling
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(contactForm)).toString(),
+    })
+      .then(() => {
+        alert('Thank you! Your message has been sent. I will get back to you soon.');
         contactForm.reset();
-    });
+      })
+      .catch(() => {
+        alert('Oops! Something went wrong. Please try again later.');
+      })
+      .finally(() => {
+        submitBtn.innerHTML = originalBtnText;
+        submitBtn.disabled = false;
+      });
+  });
 }
 
 
