@@ -88,7 +88,7 @@ backToTopBtn.addEventListener('click', () => {
     });
 });
 
-// Professional Form Handling with Modal
+// Enhanced Form Handling with Perfect Name Integration
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
@@ -113,12 +113,12 @@ if (contactForm) {
                 body: new URLSearchParams(formData).toString()
             });
             
-            // Personalize success message
-            const thankYouText = document.getElementById('thank-you-text');
-            if (formValues.name) {
-                thankYouText.innerHTML = `Thank you, <span class="name-highlight">${formValues.name}</span>!`;
+            // Personalize success message with perfect name integration
+            const thankYouElement = document.getElementById('thank-you-personal');
+            if (formValues.name && formValues.name.trim() !== '') {
+                thankYouElement.innerHTML = `Thank you, <span class="visitor-name">${formValues.name.trim()}</span>!`;
             } else {
-                thankYouText.textContent = 'Thank you!';
+                thankYouElement.textContent = 'Thank you!';
             }
             
             // Show modal
@@ -190,23 +190,27 @@ document.addEventListener('DOMContentLoaded', function() {
             isExpanded = !isExpanded;
             
             if (isExpanded) {
-                // Show all projects
-                hiddenProjects.forEach(project => {
-                    project.style.display = 'block';
+                // Show all projects with smooth animation
+                hiddenProjects.forEach((project, index) => {
                     setTimeout(() => {
-                        project.style.opacity = '1';
-                        project.style.transform = 'translateY(0)';
-                    }, 10);
+                        project.style.display = 'block';
+                        setTimeout(() => {
+                            project.style.opacity = '1';
+                            project.style.transform = 'translateY(0)';
+                        }, 10);
+                    }, index * 50); // Staggered animation
                 });
                 showMoreBtn.innerHTML = '<span>Show Less</span><i class="fas fa-chevron-up"></i>';
             } else {
-                // Hide additional projects
-                hiddenProjects.forEach(project => {
-                    project.style.opacity = '0';
-                    project.style.transform = 'translateY(20px)';
+                // Hide additional projects with smooth animation
+                hiddenProjects.forEach((project, index) => {
                     setTimeout(() => {
-                        project.style.display = 'none';
-                    }, 300);
+                        project.style.opacity = '0';
+                        project.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            project.style.display = 'none';
+                        }, 300);
+                    }, index * 30); // Staggered animation
                 });
                 showMoreBtn.innerHTML = '<span>Show More</span><i class="fas fa-chevron-down"></i>';
             }
@@ -214,8 +218,10 @@ document.addEventListener('DOMContentLoaded', function() {
             showMoreBtn.classList.toggle('active');
         });
     }
+});
 
-    // Email configuration check
+// Initialize form configuration check
+document.addEventListener('DOMContentLoaded', function() {
     console.log('Form Configuration Check:');
     console.log('- Form element:', document.querySelector('form[name="contact"]') ? 'Exists' : 'Missing');
     console.log('- Netlify attribute:', document.querySelector('form[data-netlify="true"]') ? 'Exists' : 'Missing');
