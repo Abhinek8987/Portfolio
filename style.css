@@ -407,7 +407,7 @@ section {
     transition: transform 0.3s;
 }
 
-/* @keyframes float {
+@keyframes float {
     0% { transform: translateY(0px); }
     50% { transform: translateY(-15px); }
     100% { transform: translateY(0px); }
@@ -416,7 +416,7 @@ section {
 /* .profile-img:hover {
     transform: scale(1.05) translateY(-5px);
     border-color: var(--accent);
-} */
+}
 
 /* About Section */
 .about {
