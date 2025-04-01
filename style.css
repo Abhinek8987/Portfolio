@@ -413,10 +413,10 @@ section {
     100% { transform: translateY(0px); }
 } */
 
-.profile-img:hover {
+/* .profile-img:hover {
     transform: scale(1.05) translateY(-5px);
     border-color: var(--accent);
-}
+} */
 
 /* About Section */
 .about {
