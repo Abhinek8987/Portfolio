@@ -24,7 +24,7 @@ A modern, responsive portfolio website showcasing my skills, projects, and certi
 
 ## 🚀 Live Demo
 
-<a href="https://portfolio-8987.netlify.app/" target="_blank" rel="noopener noreferrer">Portfolio</a>
+Check out the live version: <a href="https://portfolio-8987.netlify.app/" target="_blank" rel="noopener noreferrer">Portfolio</a>
 
 
 ## 🎨 Color Scheme
