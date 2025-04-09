@@ -24,7 +24,8 @@ A modern, responsive portfolio website showcasing my skills, projects, and certi
 
 ## 🚀 Live Demo
 
-Check out the live version: [https://abhinek8987.github.io/Portfolio/)
+<a href="https://portfolio-8987.netlify.app/" target="_blank" rel="noopener noreferrer">Portfolio</a>
+
 
 ## 🎨 Color Scheme
 
